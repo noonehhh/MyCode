@@ -1,4 +1,4 @@
-module awesomeProject
+module MyCode
 
 go 1.12
 
