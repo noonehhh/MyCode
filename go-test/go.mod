@@ -4,14 +4,18 @@ go 1.12
 
 require (
 	github.com/360EntSecGroup-Skylar/excelize v1.4.1
-	github.com/StackExchange/wmi v0.0.0-20190523213315-cbe66965904d // indirect
+	github.com/fasthttp-contrib/websocket v0.0.0-20160511215533-1f3b11f56072 // indirect
 	github.com/garyburd/redigo v1.6.0
-	github.com/go-ole/go-ole v1.2.4 // indirect
 	github.com/google/gopacket v1.1.17
-	github.com/kr/pretty v0.1.0 // indirect
-	github.com/shirou/gopsutil v2.19.10+incompatible
-	github.com/shirou/w32 v0.0.0-20160930032740-bb4de0191aa4 // indirect
-	gopkg.in/check.v1 v1.0.0-20190902080502-41f04d3bba15 // indirect
+	github.com/k0kubun/colorstring v0.0.0-20150214042306-9440f1994b88 // indirect
+	github.com/kataras/iris v0.0.2
+	github.com/kataras/iris/v12 v12.1.8 // indirect
+	github.com/mattn/go-colorable v0.1.8 // indirect
+	github.com/moul/http2curl v1.0.0 // indirect
+	github.com/onsi/ginkgo v1.14.2 // indirect
+	github.com/onsi/gomega v1.10.3 // indirect
+	github.com/smartystreets/goconvey v1.6.4 // indirect
+	github.com/valyala/fasthttp v1.16.0 // indirect
+	github.com/yudai/pp v2.0.1+incompatible // indirect
 	gopkg.in/mgo.v2 v2.0.0-20190816093944-a6b53ec6cb22
-	gopkg.in/yaml.v2 v2.2.5 // indirect
 )
