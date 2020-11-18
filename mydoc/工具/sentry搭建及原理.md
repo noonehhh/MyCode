@@ -40,7 +40,7 @@ sentry服务端分为web、cron、wocker这几个部分，应用出现错误后�
 * my-sentry：sentry的web服务  
 * sentry-cron：sentry的定时任务，活性检测  
 * sentry-worker：业务处理，数据持久化，报警  
-  ![](.assets/clipboard1.png)
+  ![](https://github.com/No8LaVine/MyCode/blob/master/images/sentry1.png)
 
 * 关于DSN
 
