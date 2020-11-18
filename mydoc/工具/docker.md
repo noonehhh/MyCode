@@ -47,7 +47,7 @@ yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/d
 
 #### 工作流程
 
-![img](.assets/untitle.png)
+https://github.com/No8LaVine/MyCode/blob/master/images/docker2.png
 
 #### docker运行原理
 
