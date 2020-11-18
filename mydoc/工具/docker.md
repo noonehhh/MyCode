@@ -66,5 +66,4 @@ docker是一个C-S结构的系统，docker守护进程运行在主机上，通�
 
 
 
-* 其他详见Docker.html
-
+* 其他详见Docker.html    文件过大，下载下来才可以看
