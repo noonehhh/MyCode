@@ -47,7 +47,7 @@ yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/d
 
 #### 工作流程
 
-![img](docker.assets/untitle.png)
+![img](.assets/untitle.png)
 
 #### docker运行原理
 
@@ -62,7 +62,7 @@ docker是一个C-S结构的系统，docker守护进程运行在主机上，通�
 
 - ##### **vm于docker的区别**
 
-![img](docker.assets/untitle-1605667758231.png)
+![img](.assets/untitle-1605667758231.png)
 
 
 
