@@ -62,7 +62,7 @@ docker是一个C-S结构的系统，docker守护进程运行在主机上，通�
 
 - ##### **vm于docker的区别**
 
-![img](.assets/untitle-1605667758231.png)
+![img](https://github.com/No8LaVine/MyCode/blob/master/images/untitle-1605667758231.png)
 
 
 
