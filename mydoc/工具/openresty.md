@@ -116,6 +116,58 @@ ngx.req.get_body_data()
 ngx.var.request_uri 获取uri
 ~~~
 
+### nginx常见配置
+
+~~~shell
+keepalive
+upstream xxx {
+    server 0.0.0.0:8080 max_fails=3 fail_timeout=30s weight=5;
+    keepalive 32;
+}
+
+设置到upstream服务器的空闲keepalive连接的最大数量,当这个数量被突破时，最近使用最少的连接将被关闭
+
+特别提醒：keepalive指令不会限制一个nginx worker进程到upstream服务器连接的总数量
+~~~
+
+~~~shell
+expires 缓存
+expires 30s;#30秒
+expires 30m;#30分钟
+expires 2h;#2个小时
+expires 30d;#30天
+expires -1;#不缓存
+~~~
+
+~~~shell
+nginx指定文件路径有两种方式root和alias，指令的使用方法和作用域。
+root与alias主要区别在于nginx如何解释location后面的uri，这会使两者分别以不同的方式将请求映射到服务器文件上。
+root的处理结果是：root路径＋location路径
+alias的处理结果是：使用alias路径替换location路径
+alias是一个目录别名的定义，root则是最上层目录的定义。
+还有一个重要的区别是alias后面必须要用“/”结束，否则会找不到文件的。。。而root则可有可无
+---------------------root-----------------------
+location   ^ ~   / t /   {
+      root   / www / root / html / ;
+}
+如果一个请求的URI是/t/a.html时，web服务器将会返回服务器上的/www/root/html/t/a.html的文件。
+
+---------------------alias-----------------------
+location   ^ ~   / t /   {
+alias   / www / root / html / new_t / ;
+}
+如果一个请求的URI是/t/a.html时，web服务器将会返回服务器上的/www/root/html/new_t/a.html的文件。注意这里是new_t，因为alias会把location后面配置的路径丢弃掉，把当前匹配到的目录指向到指定的目录。
+
+
+-------------------------------------------------
+注意：
+1. 使用alias时，目录名后面一定要加"/"。
+3. alias在使用正则匹配时，必须捕捉要匹配的内容并在指定的内容处使用。
+4. alias只能位于location块中。（root可以不放在location中）
+~~~
+
+
+
 ### 其他常用配置及指令见
 
 https://www.jianshu.com/p/8e0877d69b39
