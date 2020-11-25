@@ -12,6 +12,8 @@
 
 ##### 验证
 
+进入bin目录执行以下
+
 * 生产者生产消息 `./kafka-console-producer.sh --broker-list localhost:9092 --topic sun`
 * 输入 `hello world`
 * 消费者 `./kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic sun --from-beginning` ![](https://github.com/No8LaVine/MyCode/blob/master/images/kafka2.png))
