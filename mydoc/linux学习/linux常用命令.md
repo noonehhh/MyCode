@@ -71,3 +71,13 @@ fd目录下是进程打开或使用的文件的符号连接。
 export HISTTIMEFORMAT='%F %T '
 ~~~
 
+##### dig命令
+
+~~~shell
+用来从DNS域名服务器查询主机地址信息
+~~~
+
+[link](https://www.cnblogs.com/sparkdev/p/7777871.html)
+
+##### **IO模式：select，poll,epoll解析**
+
