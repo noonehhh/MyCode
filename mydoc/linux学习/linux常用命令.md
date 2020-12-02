@@ -79,5 +79,15 @@ export HISTTIMEFORMAT='%F %T '
 
 [link](https://www.cnblogs.com/sparkdev/p/7777871.html)
 
+##### ls -ahl
+
+~~~shell
+a 显示隐藏的文件
+l 显示详细列表模式
+h 大小显示便于查看（例如G，K，M）
+~~~
+
+
+
 ##### **IO模式：select，poll,epoll解析**
 
