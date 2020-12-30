@@ -1,4 +1,4 @@
-package leetcode
+package main
 
 /**
 每日一题   1   两数之和
@@ -10,3 +10,14 @@ leetcode
 因为 nums[0] + nums[1] = 2 + 7 = 9
 所以返回 [0, 1]
 */
+func twoSum(nums []int, target int) []int {
+	m := map[int]int{}
+	for k, v := range nums {
+		if i, ok := m[target-v]; ok {
+			return []int{i, k}
+		} else {
+			m[v] = k
+		}
+	}
+	return nil
+}
