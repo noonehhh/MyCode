@@ -87,7 +87,37 @@ l 显示详细列表模式
 h 大小显示便于查看（例如G，K，M）
 ~~~
 
+##### 查看连接你服务器 top10 用户端的 IP 地址
 
+~~~shell
+netstat -nat | awk '{print $5}' | awk -F ':' '{print $1}' | sort | uniq -c | sort -rn | head -n 10
+~~~
+
+##### 查看你最常用的10个命令
+
+~~~shell
+cat .bash_history | sort | uniq -c | sort -rn | head -n 10 (or cat .zhistory | sort | uniq -c | sort -rn | head -n 10
+~~~
+
+##### z系列
+
+~~~
+zless      查看压缩文件
+zcat       用于不真正解压缩文件，就能显示压缩包中文件的内容的场合
+		   -S：指定gzip格式的压缩包的后缀。当后缀不是标准压缩包后缀时使用此选项；
+		   -c：将文件内容写到标注输出；
+		   -d：执行解压缩操作；
+		   -l：显示压缩包中文件的列表；
+		   -L：显示软件许可信息；
+		   -q：禁用警告信息；
+		   -r：在目录上执行递归操作；
+		   -t：测试压缩文件的完整性；
+		   -V：显示指令的版本信息；
+		   -l：更快的压缩速度；
+		   -9：更高的压缩比。
+zmore      使用zmore命令可以查看gzip、zip、compress压缩文件。
+zgrep      命令可以在压缩文件中调用grep按正则表达式来搜索
+~~~
 
 ##### linux文件时间截点：atime、ctime与mtime
 
