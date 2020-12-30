@@ -89,5 +89,47 @@ h 大小显示便于查看（例如G，K，M）
 
 
 
+##### linux文件时间截点：atime、ctime与mtime
+
+~~~shell
+1.atime是指access time，即文件被读取或者执行的时间，修改文件是不会改变access time的。
+
+Time whenfile data was last accessed. Changedby  the following  functions:  creat(),  mknod(),  pipe(),utime(2), and read(2).
+
+2.mtime即modify time，指文件内容被修改的时间，是在写入文件时随文件内容的更改而更改的。
+
+Time whendata was last modified. Changed bythe  fol- lowing  functions:  creat(),mknod(), pipe(), utime(), andwrite(2).
+
+3.ctime即change time文件状态改变时间，是在写入文件、更改所有者、权限或链接设置时随 Inode 的内容更改而更改的。
+
+Time whenfile status was last changed. Changed by the following  functions:  chmod(),  chown(),  creat(), link(2),  mknod(),  pipe(),  unlink(2),  utime(),  and write().
+~~~
+
+##### linux查看文件ctime、atime、mtime命令
+
+~~~shell
+ls -lc test :查看test文件的ctime
+
+ls -lu test :查看test文件的atime
+
+ls -l test:查看test文件的mtime
+~~~
+
+##### –mtime中的参数n
+
+~~~shell
+–mtime n中的n指的是24*n(即n天), +n、-n、n分别表示：
+
++n：大于n，操作发在n+1天以前
+
+-n：小于n，操作发生在n天以内
+
+ n：等于n，操作刚好在n天时
+~~~
+
+##### 找到目录下所有的txt文件并删除
+
+`find ./ -name "*.txt" -exec rm -rf {} \;`
+
 ##### **IO模式：select，poll,epoll解析**
 
