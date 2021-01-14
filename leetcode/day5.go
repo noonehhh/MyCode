@@ -34,13 +34,22 @@ func reversePrint(head *ListNode) []int {
 	return arr
 }
 
-func reversrList2(head *ListNode) *ListNode {
+func reversrList2(head *ListNode) []int {
 	cur := head
+	var arr []int
 	var pre *ListNode = nil
 	for cur != nil {
 		pre, cur, cur.Next = cur, cur.Next, pre //这句话最重要
 	}
-	return pre
+
+	for pre != nil {
+		arr = append(arr, pre.Val)
+		pre = pre.Next
+	}
+
+	return arr
+
+	return arr
 }
 
 func reversePrint3(head *ListNode) []int {
