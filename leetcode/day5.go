@@ -34,7 +34,7 @@ func reversePrint(head *ListNode) []int {
 	return arr
 }
 
-func reversrList2(head *ListNode) []int {
+func reversePrint2(head *ListNode) []int {
 	cur := head
 	var arr []int
 	var pre *ListNode = nil
