@@ -48,8 +48,6 @@ func reversrList2(head *ListNode) []int {
 	}
 
 	return arr
-
-	return arr
 }
 
 func reversePrint3(head *ListNode) []int {
