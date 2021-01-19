@@ -118,17 +118,53 @@ ngx.var.request_uri 获取uri
 
 ### nginx常见配置
 
+##### upstream
+
 ~~~shell
 keepalive
-upstream xxx {
-    server 0.0.0.0:8080 max_fails=3 fail_timeout=30s weight=5;
-    keepalive 32;
-}
+    upstream xxx {
+        server 0.0.0.0:8080 max_fails=3 fail_timeout=30s weight=5;
+        keepalive 32;
+    }
 
-设置到upstream服务器的空闲keepalive连接的最大数量,当这个数量被突破时，最近使用最少的连接将被关闭
+设置到 upstream 服务器的空闲 keepalive 连接的最大数量,当这个数量被突破时，最近使用最少的连接将被关闭
+特别提醒：keepalive 指令不会限制一个 nginx worker 进程到 upstream 服务器连接的总数量
 
-特别提醒：keepalive指令不会限制一个nginx worker进程到upstream服务器连接的总数量
+upstream 相关参数
+    server 服务ip:端口
+    weight 权重
+    max_fails  最多失败连接的次数，超过就认为主机挂掉了
+    fail_timeout  重新连接的时间
+    backup  备用服务
+    max_conns  允许的最大连接数
+    slow_start  节点恢复后，等待多少秒后再加入
 ~~~
+
+##### nginx 负载均衡算法
+
+###### ip_hash算法
+
+~~~shell
+对于访问的ip，他会做一次hash运算，并对当前的负载应用数量做一次取余运算，这种算法能保证同一个ip访问的是同一台应用服务器。
+upstream backend {
+    ip_hash;
+    server 127.0.0.1:8081;
+    server 127.0.0.1:8082;
+}
+~~~
+
+###### **url_hash算法**
+
+~~~shell
+对于请求的url进行hash运算，这种算法能保证同一个url访问的是同一台应用服务器。
+upstream backend {
+    url_hash;
+    server 127.0.0.1:8081;
+    server 127.0.0.1:8082;
+}
+~~~
+
+##### expires 
 
 ~~~shell
 expires 缓存
@@ -138,6 +174,8 @@ expires 2h;#2个小时
 expires 30d;#30天
 expires -1;#不缓存
 ~~~
+
+##### root和alias
 
 ~~~shell
 nginx指定文件路径有两种方式root和alias，指令的使用方法和作用域。
@@ -166,9 +204,93 @@ alias   / www / root / html / new_t / ;
 4. alias只能位于location块中。（root可以不放在location中）
 ~~~
 
+##### rewrite
+
+~~~shell
+rewrite 地址重定向
+* 使用位置：server location if
+* 基本语法：rewrite regex replacement [flag];
+	rewrite的含义：该指令是实现URL重写的指令。
+	regex的含义：用于匹配URI的正则表达式。
+	replacement：将regex正则匹配到的内容替换成 replacement。
+	flag: flag标记。
+		flag 有以下值
+		last: 本条规则匹配完成后，继续向下匹配新的location URI 规则。(不常用)
+		break: 本条规则匹配完成即终止，不再匹配后面的任何规则(不常用)。
+        redirect: 返回302临时重定向，浏览器地址会显示跳转新的URL地址。
+		permanent: 返回301永久重定向。浏览器地址会显示跳转新的URL地址。
+~~~
+
+##### nginx 缓存
+
+###### http 块
+
+~~~shell
+proxy_cache_path /www/javayz/cache levels=1:2 keys_zone=cache_javayz:500m inactive=20d max_size=1g;
+
+#proxy_cache_path  缓存存放的路径 
+#levels  缓存层级及目录的位数，1:2表示两级目录，第一级目录用1位16进制表示，第二级目录用2位16进制表示
+#keys_zone 缓存区内存大小
+#inactive 有效期，如果缓存有效期内未使用，则删除
+#max_size 存储缓存的硬盘大小
+~~~
+
+###### location 块
+
+~~~shell
+#指定缓存区，就是上面设置的key_zone
+proxy_cache cache_javayz;
+
+#缓存的key，这里用请求的全路径md5做为key
+proxy_cache_key $host$uri$is_args$args;
+
+#对不通的http状态码设置不同的缓存时间,下面的配置表示200时才进行缓存，缓存时间12小时
+proxy_cache_valid 200 12h;
+~~~
+
+##### nginx 防盗链
+
+###### 什么是防盗链？
+
+​	客户端向服务器请求资源时，为了减少网络带宽，提升响应时间，服务器一般不会一次将所有  资源完整地传回给客户端。比如在请求一个网页时，首先会传回该网页的文本内容，当客户端  浏览器在解析文本的过程中发现有图片存在时，会再次向服务器发起对该图片资源的请求，服务器将存储的图片资源再发送给客户端。在这个过程中，如果该服务器上只包含了网页的文本内容，并没有存储相关的图片资源，而是将图片资源链接到其他站点的服务器上，就形成了盗链行为。
+
+​	比如在我项目中，我引用了的是淘宝中的一张图片的话，那么当我们网站重新加载的时候，就会请求淘宝的服务器，那么这就很有可能造成淘宝服务器负担。因此这个就是盗链行为。因此我们要实现防盗链。
+
+###### 实现防盗链
+
+​	使用http协议中请求头部的 `Referer` 头域来判断当前访问的网页或文件的源地址。通过该头域的值，我们可以检测访问目标资源的源地址。如果目标源地址不是我们自己站内的 `URL` 的话，那么这种情况下，我们采取阻止措施，实现防盗链。但是注意的是：`Referer` 头域中的值是可以被更改的。因此该方法也不能完全安全阻止防盗链。
+
+###### Nginx 服务器的 Rewrite 功能实现防盗链。
+
+`Nginx` 中有一个指令 `valid_referers`。 该指令可以用来获取 `Referer` 头域中的值，并且根据该值的情况给 `Nginx` 全局变量 `invalidreferer` 赋值。如果`Referer` 头域中没有符合 `validreferers` 指令的值的话，，`invalid_referer` 变量将会赋值为1。 valid_referers 指令基本语法如下：
+
+~~~shell
+valid_referers  none | blocked | server_names | string
+none: 		    检测Referer头域不存在的情况。
+blocked：        检测Referer头域的值被防火墙或者代理服务器删除或伪装的情况。那么在这种情况下，该头域的值不以"http://" 或 "https://" 开头。
+server_names:  	设置一个或多个URL，检测Referer头域的值是否是URL中的某个。
+~~~
+
+###### 完整代码
+
+~~~shell
+location ~* \.(gif|jpg|png|jpeg)$ {
+
+expires     30d;
+valid_referers *.hugao8.com www.hugao8.com m.hugao8.com *.baidu.com *.google.com;
+if ($invalid_referer) {
+	rewrite ^/ http://ww4.sinaimg.cn/bmiddle/051bbed1gw1egjc4xl7srj20cm08aaa6.jpg;
+	#return 404;
+  }
+
+}
+~~~
+
 
 
 ### 其他常用配置及指令见
+
+https://juejin.cn/post/6844904144235413512#heading-14
 
 https://www.jianshu.com/p/8e0877d69b39
 
