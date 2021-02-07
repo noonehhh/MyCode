@@ -164,9 +164,9 @@ memory purge
 
 ###### `multi` 开启，`exec` 执行，`discard`放弃watch
 
-https://github.com/No8LaVine/MyCode/blob/master/images/redis2.png
+![](https://github.com/No8LaVine/MyCode/blob/master/images/redis2.png)
 
-https://github.com/No8LaVine/MyCode/blob/master/images/redis3.png
+![](https://github.com/No8LaVine/MyCode/blob/master/images/redis3.png)
 
 ###### 事务的特性
 
@@ -179,11 +179,11 @@ https://github.com/No8LaVine/MyCode/blob/master/images/redis3.png
 
 * 全体连坐
 
-  https://github.com/No8LaVine/MyCode/blob/master/images/redis4.png
+  ![](https://github.com/No8LaVine/MyCode/blob/master/images/redis4.png)
 
 * 冤头债主
 
-  https://github.com/No8LaVine/MyCode/blob/master/images/redis5.png
+  ![](https://github.com/No8LaVine/MyCode/blob/master/images/redis5.png)
 
 ###### `watch` 监听
 
