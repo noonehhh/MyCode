@@ -77,7 +77,7 @@ io-threads 4
 
 输入命令 `info memory`
 
-[MyCode/redis1.png at master · No8LaVine/MyCode (github.com)](https://github.com/No8LaVine/MyCode/blob/master/images/redis1.png)
+![](https://github.com/No8LaVine/MyCode/blob/master/images/redis1.png)
 
 ~~~shell
 1、used_memory：
