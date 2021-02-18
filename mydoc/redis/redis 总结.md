@@ -262,3 +262,9 @@ https://github.com/No8LaVine/MyCode/blob/master/mydoc/redis/redis%20SDS.md
 
 ##### redis 高并发、高可用
 https://github.com/No8LaVine/MyCode/blob/master/mydoc/redis/redis%20%E9%AB%98%E5%B9%B6%E5%8F%91%E3%80%81%E9%AB%98%E5%8F%AF%E7%94%A8.md
+
+##### redis rehash
+
+https://juejin.cn/post/6844903680706101262
+
+https://www.cnblogs.com/williamjie/p/11205593.html
