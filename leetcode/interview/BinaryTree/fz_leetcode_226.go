@@ -32,9 +32,7 @@ func reverse(node *Node) {
 		return
 	}
 
-	tmp := node.left
-	node.left = node.right
-	node.right = tmp
+	node.left, node.right = node.right, node.left
 
 	reverse(node.left)
 	reverse(node.right)
