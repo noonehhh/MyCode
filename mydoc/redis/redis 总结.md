@@ -268,3 +268,19 @@ https://github.com/No8LaVine/MyCode/blob/master/mydoc/redis/redis%20%E9%AB%98%E5
 https://juejin.cn/post/6844903680706101262
 
 https://www.cnblogs.com/williamjie/p/11205593.html
+
+##### setnx 加锁
+
+~~~python
+def lock_after_pay(self):
+    if self.client.setnx(self.getKeyName(), 1):
+        self.client.expire(self.getKeyName(), 600)
+        return True
+    return False
+~~~
+
+##### redis内存回收策略
+
+* https://github.com/No8LaVine/MyCode/blob/master/mydoc/%E5%B7%A5%E5%85%B7/redis%E6%BB%A1%E8%BD%BD%E5%8E%8B%E6%B5%8B.md
+* https://www.jianshu.com/p/1f8e36285539
+* https://juejin.cn/post/6844904193052934151
