@@ -284,3 +284,13 @@ def lock_after_pay(self):
 * https://github.com/No8LaVine/MyCode/blob/master/mydoc/%E5%B7%A5%E5%85%B7/redis%E6%BB%A1%E8%BD%BD%E5%8E%8B%E6%B5%8B.md
 * https://www.jianshu.com/p/1f8e36285539
 * https://juejin.cn/post/6844904193052934151
+
+##### redis 分布式锁
+
+https://juejin.cn/post/6844903688088059912
+
+https://crossoverjie.top/2018/03/29/distributed-lock/distributed-lock-redis/
+
+https://xiaomi-info.github.io/2019/12/17/redis-distributed-lock/
+
+https://www.cnblogs.com/chengxy-nds/p/12750502.html
