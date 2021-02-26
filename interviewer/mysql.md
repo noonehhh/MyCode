@@ -26,6 +26,10 @@ https://zhuanlan.zhihu.com/p/50564425
 
 https://www.jianshu.com/p/a957b18ba40d
 
+##### 多版本控制 mvcc
+
+https://segmentfault.com/a/1190000012650596
+
 ##### b-tree和b+tree
 
 https://www.jianshu.com/p/0371c9569736
