@@ -319,7 +319,7 @@ https://www.biugogo.com/2019/12/01/Redis%E7%B3%BB%E5%88%97(4)---%E5%86%85%E5%AD%
 
 ##### `SDS`
 
-https://github.com/No8LaVine/MyCode/blob/master/mydoc/redis/redis%20SDS.md
+[SDS](https://github.com/No8LaVine/MyCode/blob/master/redis/redis%20SDS.md)
 
 ##### redis 高并发、高可用
 https://github.com/No8LaVine/MyCode/blob/master/mydoc/redis/redis%20%E9%AB%98%E5%B9%B6%E5%8F%91%E3%80%81%E9%AB%98%E5%8F%AF%E7%94%A8.md
@@ -335,7 +335,7 @@ https://www.cnblogs.com/williamjie/p/11205593.html
 ~~~python
 def lock_after_pay(self):
     if self.client.setnx(self.getKeyName(), 1):
-        self.client.expire(self.getKeyName(), 600)
+        self.client.expire(self.getKeyName(), 600) // 防止死锁
         return True
     return False
 ~~~
@@ -355,3 +355,7 @@ https://crossoverjie.top/2018/03/29/distributed-lock/distributed-lock-redis/
 https://xiaomi-info.github.io/2019/12/17/redis-distributed-lock/
 
 https://www.cnblogs.com/chengxy-nds/p/12750502.html
+
+##### redis 实现限流
+
+[redis限流](https://segmentfault.com/a/1190000016552464)
