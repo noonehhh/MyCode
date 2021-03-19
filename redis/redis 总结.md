@@ -311,6 +311,8 @@ MySQL binlog 增量订阅消费+消息队列+增量数据更新到redis
 
 https://juejin.cn/post/6844903955831619597
 
+https://segmentfault.com/a/1190000022028505
+
 ##### redis 内存与性能优化
 
 https://www.biugogo.com/2019/12/01/Redis%E7%B3%BB%E5%88%97(4)---%E5%86%85%E5%AD%98%E4%BC%98%E5%8C%96/
