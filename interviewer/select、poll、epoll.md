@@ -50,15 +50,87 @@ int poll (struct pollfd *fds, unsigned int nfds, int timeout);
 然后监视这些事件的状态码变化，一旦有文件描述符状态就绪，就通知进程
 ~~~
 
+##### 与select、poll的区别
+
+>select/poll，进程只有在调用一定的方法后，内核才对所有监视的文件描述符进行扫描
+>
+>epoll,采用基于事件的就绪通知方式。epoll 同样只告知那些就绪的文件描述符，而且当我们调用 epoll_wait() 获得就绪文件描述符时，返回的不是实际的描述符，而是一个代表就绪描述符数量的值，你只需要去epoll指定的一个数组中依次取得相应数量的文件描述符即可
+
+##### 步骤
+
+>1. epoll事先通过epoll_ctl()来注册一个文件描述符，一旦基于某个文件描述符就绪时，将其加入到就绪链表
+>2. 内核会采用类似callback的回调机制，迅速激活这个文件描述符，当进程调用 epoll_wait() 时便得到通知。
+
+~~~
+当某一进程调用epoll_create方法时，Linux内核会创建一个eventpoll结构体，这个结构体中有两个成员与epoll的使用方式密切相关
+
+
+每一个epoll对象都有一个独立的eventpoll结构体，用于存放通过epoll_ctl方法向epoll对象中添加进来的事件。
+这些事件都会挂载在红黑树中，
+如此，重复添加的事件就可以通过红黑树而高效的识别出来(红黑树的插入时间效率是lgn，其中n为树的高度)。
+
+而所有添加到epoll中的事件都会与设备(网卡)驱动程序建立回调关系，也就是说，当相应的事件发生时会调用这个回调方法。
+这个回调方法在内核中叫ep_poll_callback，它会将发生的事件添加到rdlist双链表中。
+
+当调用epoll_wait检查是否有事件发生时，只需要检查eventpoll对象中的rdlist双链表中是否有epitem元素即可
+。如果rdlist不为空，则把发生的事件复制到用户态，同时将事件数量返回给用户。
+~~~
+
 ##### 接口
 
 ~~~c
-int epoll_create(int size)；//创建一个epoll的句柄，size用来告诉内核这个监听的数目一共有多大
+int epoll_create(int size)；
     
 int epoll_ctl(int epfd, int op, int fd, struct epoll_event *event)；
     
 int epoll_wait(int epfd, struct epoll_event * events, int maxevents, int timeout);
 ~~~
+
+###### event_poll
+
+~~~
+每一个epoll对象都有一个独立的eventpoll结构体，用于存放通过epoll_ctl方法向epoll对象中添加进来的事件。
+这些事件都会挂载在红黑树中，如此，重复添加的事件就可以通过红黑树而高效的识别出来(红黑树的插入时间效率是lgn，其中n为树的高度)。
+~~~
+
+###### 接口解析
+
+>1. int epoll_create(int size)；
+>
+>创建一个epoll的句柄，size用来告诉内核这个监听的数目一共有多大。
+
+
+
+>2. int epoll_ctl(int epfd, int op, int fd, struct epoll_event *event)；
+>
+>将epoll_event结构拷贝到内核空间中；
+>
+>参数：
+>
+>epfd：由 epoll_create 生成的epoll专用的文件描述符；
+>op：要进行的操作例如注册事件，可能的取值EPOLL_CTL_ADD 注册、EPOLL_CTL_MOD 修 改、EPOLL_CTL_DEL 删除
+>fd：关联的文件描述符；
+>event：指向epoll_event的指针；
+
+
+
+>3.int epoll_wait(int epfd, struct epoll_event * events, int maxevents, int timeout);
+>
+>该函数用于轮询I/O事件的发生，返回需要处理的事件数目，如返回0表示已超时。
+>
+>参数：
+>
+>events：用来从内核得到事件的集合
+>
+>maxevents：告之内核这个events有多大，这个 maxevents的值不能大于创建epoll_create()时的size，
+>
+>timeout：是超时时间（毫秒，0会立即返回，-1将不确定，也有说法说是永久阻塞）。
+
+###### event_wait工作机制
+
+>1. 计算睡眠时间(如果有)，判断eventpoll对象的链表是否为空,不为空那就干活，不睡眠，并且初始化一个等待队列，把自己挂上去，设置自己的进程状态为可睡眠状态。判断是否有信号到来(有的话直接被中断醒来)，如果啥事都没有那就调用schedule_timeout进行睡眠，如果超时或者被唤醒，首先从自己初始化的等待队列删除 ，然后开始拷贝资源给用户空间了。
+>
+>2. 拷贝资源则是先把就绪事件链表转移到中间链表，然后挨个遍历拷贝到用户空间。并且挨个判断其是否为水平触发，是的话再次插入到就绪链表。
 
 ##### 机制
 
@@ -83,21 +155,6 @@ epoll采用基于事件的就绪通知方式。
 ~~~
 它只会提示一次，直到下次再有数据流入之前都不会再提示了，无论fd中是否还有数据可读。
 所以在ET模式下，read一个fd的时候一定要把它的buffer读完，或者遇到EAGAIN错误
-~~~
-
-###### ET模式的实现机制
-
-~~~
-epoll 同样只告知那些就绪的文件描述符，而且当我们调用epoll_wait()获得就绪文件描述符时，返回的不是实际的描述符，
-而是一个代表就绪描述符数量的值，你只需要去epoll指定的一个数组中依次取得相应数量的文件描述符即可
-
-这里也使用了内存映射（mmap）技术，这样便彻底省掉了这些文件描述符在系统调用时复制的开销。
-
-另一个本质的改进在于epoll采用基于事件的就绪通知方式。在select/poll中，进程只有在调用一定的方法后，
-内核才对所有监视的文件描述符进行扫描
-
-而epoll事先通过epoll_ctl()来注册一个文件描述符，一旦基于某个文件描述符就绪时，内核会采用类似callback的回调机制，
-迅速激活这个文件描述符，当进程调用epoll_wait()时便得到通知。
 ~~~
 
 
@@ -125,6 +182,10 @@ epoll 同样只告知那些就绪的文件描述符，而且当我们调用epoll
 >
 
 真牛：
+
+https://www.bilibili.com/video/BV1F54y1U7jN
+
+https://zhuanlan.zhihu.com/p/347451068
 
 https://gitlib.com/page/linux-io-event.html
 
