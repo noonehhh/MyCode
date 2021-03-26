@@ -194,7 +194,9 @@ count 是键值对数量，2^B是 buckets 的数量，上面的公式也就是�
 
 
 
-参考：
+#### 参考：
+
+[煎鱼](https://eddycjy.com/posts/go/map/2019-03-24-map-assign/)
 
 https://my.oschina.net/renhc/blog/2208417
 
