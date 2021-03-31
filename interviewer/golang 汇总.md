@@ -14,7 +14,7 @@ https://github.com/No8LaVine/MyCode/blob/master/interviewer/golang%20struct%E8%8
 
 #### make和new的区别
 
-https://github.com/No8LaVine/MyCode/blob/master/interviewer/golang%20struct%E8%83%BD%E5%90%A6%E8%A2%AB%E6%AF%94%E8%BE%83%EF%BC%9F.md
+https://mp.weixin.qq.com/s/tZg3zmESlLmefAWdTR96Tg
 
 #### 内存逃逸
 
