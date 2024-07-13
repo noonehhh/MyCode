@@ -169,3 +169,15 @@ https://zhuanlan.zhihu.com/p/25960208
 https://gsmtoday.github.io/2019/02/17/master-slave-sync/
 
 https://segmentfault.com/a/1190000020693588
+
+##### 数据库分库分表
+
+https://cloud.tencent.com/developer/article/2181007
+
+https://www.51cto.com/article/709614.html
+
+https://github.com/wenbin8/doc/blob/master/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/01-%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8-%E6%80%BB%E4%BD%93%E6%A6%82%E8%BF%B0.md
+
+https://tech.meituan.com/2016/11/18/dianping-order-db-sharding.html
+
+https://www.cnblogs.com/sheseido/p/8880091.html
