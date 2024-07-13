@@ -64,3 +64,16 @@ https://github.com/No8LaVine/MyCode/blob/master/interviewer/%E8%BF%9B%E7%A8%8B%E
 #### string、byte、rune的区别
 
 https://cloudsjhan.github.io/2018/10/25/golang%E4%B8%ADstring-rune-byte%E7%9A%84%E5%85%B3%E7%B3%BB/
+
+#### golang 程序员面试宝典
+https://golang.design/go-questions/slice/grow/
+
+#### golang 面试小抄
+https://github.com/mao888/golang-guide
+
+#### Golang-Interview（秋招）
+https://github.com/CocaineCong/Golang-Interview?tab=readme-ov-file#golang-interview
+https://github.com/CocaineCong/Golang-Interview
+
+#### Go 程序员面试笔试宝典
+https://github.com/golang-design/go-questions
