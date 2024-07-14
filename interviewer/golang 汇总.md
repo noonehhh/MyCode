@@ -77,3 +77,22 @@ https://github.com/CocaineCong/Golang-Interview
 
 #### Go 程序员面试笔试宝典
 https://github.com/golang-design/go-questions
+
+#### 面试合集
+https://github.com/xiaobaiTech/golangFamily
+
+#### Go 进阶面试题汇总
+https://golangguide.top/golang/%E9%9D%A2%E8%AF%95%E9%A2%98/2.Go%E8%BF%9B%E9%98%B6.html
+
+#### go 核心知识点
+https://golangguide.top/golang/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9/
+
+#### 面经 2024
+https://juejin.cn/post/7350482843532263462
+https://juejin.cn/post/7311736237899005961
+https://juejin.cn/user/2189882892232029/posts
+https://blog.csdn.net/2401_84924910/article/details/138979710
+https://www.cnblogs.com/wangzhongyang/p/17798074.html
+
+#### 刘丹冰
+https://github.com/aceld/golang/tree/main
