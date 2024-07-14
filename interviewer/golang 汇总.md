@@ -1,5 +1,9 @@
 ### 汇总
 
+#### golang 面试地鼠文档
+https://www.topgoer.cn/docs/gomianshiti/golangInterview
+https://www.topgoer.cn/docs/gomianshiti/mianshiti
+
 #### array、slice
 
 https://github.com/No8LaVine/MyCode/blob/master/interviewer/golang%20array%E5%92%8Cslice.md
@@ -96,5 +100,14 @@ https://www.cnblogs.com/wangzhongyang/p/17798074.html
 
 #### 刘丹冰
 https://github.com/aceld/golang/tree/main
+
+### 交替打印
+https://feeman.blog.csdn.net/article/details/77892616
+
+#### interview 专栏
+https://blog.csdn.net/weiyuefei/article/details/77963810
+
+#### golang 面试之路
+https://www.kancloud.cn/aceld/golang/1958312
 
 
