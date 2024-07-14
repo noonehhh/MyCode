@@ -97,6 +97,8 @@ https://juejin.cn/post/7311736237899005961
 https://juejin.cn/user/2189882892232029/posts
 https://blog.csdn.net/2401_84924910/article/details/138979710
 https://www.cnblogs.com/wangzhongyang/p/17798074.html
+https://www.nowcoder.com/feed/main/detail/ff78ddd58056430e9582e6fd6a0eff35?sourceSSR=search
+https://www.nowcoder.com/search/all?query=golang%E7%A4%BE%E6%8B%9B&type=all&searchType=%E9%A1%B6%E9%83%A8%E5%AF%BC%E8%88%AA%E6%A0%8F&subType=0
 
 #### 刘丹冰
 https://github.com/aceld/golang/tree/main
@@ -110,6 +112,8 @@ https://blog.csdn.net/weiyuefei/article/details/77963810
 #### golang 面试之路
 https://www.kancloud.cn/aceld/golang/1958312
 
+#### Go 101
+https://gfw.go101.org/article/101.html
 #### go questions
 https://www.bookstack.cn/read/qcrao-Go-Questions/README.md
 
