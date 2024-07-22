@@ -13,6 +13,7 @@
 > 5. 使用底层模型不同，它们之间底层实现方式以及与客户端之间通信的应用协议不一样，Redis 直接自己构建了 VM机制 ，因为一般的系统调用系统函数的话，会浪费一定的时间去移动和请求；
 
 https://segmentfault.com/a/1190000037637112
+https://mp.weixin.qq.com/s?__biz=MzkzMDI1NjcyOQ==&mid=2247487752&idx=1&sn=72a1725e1c86bb5e883dd8444e5bd6c4&source=41&scene=21#wechat_redirect
 
 ##### redis为什么是单线程的？
 
