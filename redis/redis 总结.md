@@ -358,6 +358,10 @@ https://xiaomi-info.github.io/2019/12/17/redis-distributed-lock/
 
 https://www.cnblogs.com/chengxy-nds/p/12750502.html
 
+https://tech.youzan.com/bond/
+
+https://mp.weixin.qq.com/s?__biz=MzU1ODEzNjI2NA%3D%3D&mid=2247487185&idx=3&sn=f578fc96452f1e08d6c8d239ca2024c4&chksm=fc2a6076cb5de960e81b78d13047a72e32ac79226f96945955a21ec40a2a9990df838f5bdeac&token=2081705945&lang=zh_CN#rd
+
 ##### redis 实现限流
 
 [redis限流](https://segmentfault.com/a/1190000016552464)
