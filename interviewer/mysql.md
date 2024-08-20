@@ -181,3 +181,8 @@ https://github.com/wenbin8/doc/blob/master/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86
 https://tech.meituan.com/2016/11/18/dianping-order-db-sharding.html
 
 https://www.cnblogs.com/sheseido/p/8880091.html
+
+##### 深度分页问题
+https://juejin.cn/post/7012016858379321358
+https://javaguide.cn/high-performance/deep-pagination-optimization.html#%E8%A6%86%E7%9B%96%E7%B4%A2%E5%BC%95
+https://juejin.cn/post/6985478936683610149#heading-5
