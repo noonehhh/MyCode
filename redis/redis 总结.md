@@ -235,6 +235,7 @@ memory purge
 
 
 ##### 怎么保证 redis 和 db 中的数据一致？
+https://www.cnblogs.com/yangyongjie/p/11094437.html
 
 经典        缓存+数据库读写模式
 
